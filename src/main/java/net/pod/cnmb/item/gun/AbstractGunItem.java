@@ -1,21 +1,19 @@
 package net.pod.cnmb.item.gun;
 
-import net.minecraft.commands.arguments.EntityAnchorArgument;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.pod.cnmb.entity.projectile.GenericBulletEntity;
+import net.pod.cnmb.registry.ModSounds;
 
 public abstract class AbstractGunItem extends Item {
-    // change into DataComponents later
     private int shootRate;
     private double bulletDamage;
     private double bulletSpeed;
@@ -35,23 +33,34 @@ public abstract class AbstractGunItem extends Item {
         this.shootRate = shootRate;
     }
 
-    public void shoot(Player player) {
-        if (player.getCooldowns().isOnCooldown(this)) {
-            return;
+    public void shoot(Entity entity) {
+        if (entity instanceof Player player) {
+            if (player.getCooldowns().isOnCooldown(this)) {
+                return;
+            }
+            player.getCooldowns().addCooldown(this, 20 / shootRate);
+            player.awardStat(Stats.ITEM_USED.get(this));
         }
-        Level l = player.level();
-        player.getCooldowns().addCooldown(this, 20 / shootRate);
-
+        Level l = entity.level();
         if (!l.isClientSide) {
             // creating the object automatically fills in all the necessary data.
             // After initialization, entity is ready to be added to the level
             GenericBulletEntity projectile =
-                    new GenericBulletEntity(player, l, bulletDamage, bulletSpeed);
+                    new GenericBulletEntity(entity, l, bulletDamage, bulletSpeed);
 
             l.addFreshEntity(projectile);
-        }
 
-        player.awardStat(Stats.ITEM_USED.get(this));
+            l.playSound(
+                    null,
+                    entity.getX(),
+                    entity.getY(),
+                    entity.getZ(),
+                    ModSounds.Gun_Fire.get(),
+                    SoundSource.PLAYERS,
+                    1.0F,
+                    1.0F
+            );
+        }
     }
 
     public void startFiring(ServerPlayer player) {
@@ -78,13 +87,4 @@ public abstract class AbstractGunItem extends Item {
             shoot(player);
         }
     }
-
-    /*
-            projectile.setYRot((float)(Mth.atan2(direction.z, direction.x) * Mth.RAD_TO_DEG) - 90.0F);
-
-            projectile.setXRot((float)(
-                    Mth.atan2(direction.y,
-                            Math.sqrt(direction.x * direction.x + direction.z * direction.z)) * Mth.RAD_TO_DEG)
-            );
-            */
 }
