@@ -1,16 +1,11 @@
 package net.pod.cnmb;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.pod.cnmb.entity.leadgolem.Client.LeadGolemRender;
 import net.pod.cnmb.entity.projectile.GenericBulletEntity;
 import net.pod.cnmb.entity.projectile.GenericBulletRenderer;
 import net.pod.cnmb.networking.ModNetworking;
 import net.pod.cnmb.registry.*;
 import org.slf4j.Logger;
-
 
 import com.mojang.logging.LogUtils;
 
@@ -38,7 +33,6 @@ public class NeedMoreBulletsMod {
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
-
         //EntityRenderers.register(ModEntities.GENERIC_BULLET.get(), GenericBulletRenderer::new);
 
         modEventBus.addListener(this::addCreative);
@@ -61,13 +55,5 @@ public class NeedMoreBulletsMod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("CNMB serverside started. (insert 120 year old engine startup sounds)");
-    }
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLCommonSetupEvent event){
-
-            EntityRenderers.register(ModEntities.GOLEM.get(), LeadGolemRender::new);
-        }
     }
 }
