@@ -3,7 +3,6 @@ package net.pod.cnmb.registry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +13,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.pod.cnmb.NeedMoreBulletsMod;
 
 import static net.pod.cnmb.NeedMoreBulletsMod.REGISTRATE;
-import static net.pod.cnmb.registry.CNMBAllPaletteStoneTypes.CERUSSITE;
+import static net.pod.cnmb.registry.ModStoneBlocksPalettes.CERUSSITE;
 
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =

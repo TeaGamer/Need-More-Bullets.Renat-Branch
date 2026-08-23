@@ -23,7 +23,7 @@ import static net.pod.cnmb.palettes.CNMBPaletteBlockPattern.STANDARD_RANGE;
  * Copy of AllPaletteStoneTypes from create
  * @see com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes
  */
-public enum CNMBAllPaletteStoneTypes {
+public enum ModStoneBlocksPalettes {
     CERUSSITE(STANDARD_RANGE, r -> r.paletteStoneBlock("cerussite", () -> Blocks.DEEPSLATE, true, true)
             .properties(p -> p.destroyTime(2f))
             .register()),
@@ -37,13 +37,9 @@ public enum CNMBAllPaletteStoneTypes {
     public final CNMBPaletteBlockPattern[] variantTypes;
     public TagKey<Item> materialTag;
 
-    CNMBAllPaletteStoneTypes(CNMBPaletteBlockPattern[] variantTypes, Function<CreateRegistrate, NonNullSupplier<Block>> factory) {
+    ModStoneBlocksPalettes(CNMBPaletteBlockPattern[] variantTypes, Function<CreateRegistrate, NonNullSupplier<Block>> factory) {
         this.factory = factory;
         this.variantTypes = variantTypes;
-    }
-
-    public NonNullSupplier<Block> getBaseBlock() {
-        return baseBlock;
     }
 
     public CNMBPalettesVariantEntry getVariants() {
@@ -52,7 +48,7 @@ public enum CNMBAllPaletteStoneTypes {
 
     @SuppressWarnings({"deprecation", "removal"})
     public static void register(CreateRegistrate registrate) {
-        for (CNMBAllPaletteStoneTypes paletteStoneVariants : values()) {
+        for (ModStoneBlocksPalettes paletteStoneVariants : values()) {
             paletteStoneVariants.baseBlock = paletteStoneVariants.factory.apply(registrate);
             String id = Lang.asId(paletteStoneVariants.name());
             paletteStoneVariants.materialTag =

@@ -8,17 +8,13 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.createmod.catnip.math.BlockFace;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.pod.cnmb.NeedMoreBulletsMod;
-import net.pod.cnmb.registry.CNMBAllPaletteStoneTypes;
-import net.pod.cnmb.registry.ModCreativeTabs;
+import net.pod.cnmb.registry.ModStoneBlocksPalettes;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -35,7 +31,7 @@ public class CNMBPalettesVariantEntry {
     public final ImmutableList<BlockEntry<? extends Block>> registeredPartials;
 
 
-    public CNMBPalettesVariantEntry(String name, CNMBAllPaletteStoneTypes paletteStoneVariants) {
+    public CNMBPalettesVariantEntry(String name, ModStoneBlocksPalettes paletteStoneVariants) {
         ImmutableList.Builder<BlockEntry<? extends Block>> registeredBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockEntry<? extends Block>> registeredPartials = ImmutableList.builder();
         NonNullSupplier<Block> baseBlock = paletteStoneVariants.baseBlock;
