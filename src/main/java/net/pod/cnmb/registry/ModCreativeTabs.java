@@ -11,6 +11,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.pod.cnmb.NeedMoreBulletsMod;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.function.Supplier;
 
 public class ModCreativeTabs {
@@ -27,6 +28,7 @@ public class ModCreativeTabs {
                         for (Block b : ModBlocks.getBlocks()) {
                             output.accept(b);
                         }
+                        //output.accept(ModItems.LEAD_GOLEM_SPAWN_EGG);
                     }).build());
 
 

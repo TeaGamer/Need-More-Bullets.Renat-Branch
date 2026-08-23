@@ -41,8 +41,6 @@ public abstract class AbstractGunItem extends Item {
         player.getCooldowns().addCooldown(this, 20 / shootRate);
 
         if (!l.isClientSide) {
-            // creating the object automatically fills in all the necessary data.
-            // After initialization, entity is ready to be added to the level
             GenericBulletEntity projectile =
                     new GenericBulletEntity(player, l, bulletDamage, bulletSpeed);
 
@@ -87,13 +85,4 @@ public abstract class AbstractGunItem extends Item {
             shoot(player);
         }
     }
-
-    /*
-            projectile.setYRot((float)(Mth.atan2(direction.z, direction.x) * Mth.RAD_TO_DEG) - 90.0F);
-
-            projectile.setXRot((float)(
-                    Mth.atan2(direction.y,
-                            Math.sqrt(direction.x * direction.x + direction.z * direction.z)) * Mth.RAD_TO_DEG)
-            );
-            */
 }
