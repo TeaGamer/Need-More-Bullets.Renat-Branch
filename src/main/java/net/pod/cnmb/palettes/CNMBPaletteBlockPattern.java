@@ -159,14 +159,6 @@ public class CNMBPaletteBlockPattern {
                 .cubeAll(createName(variant), all));
     }
 
-    public CNMBPaletteBlockPattern.IBlockStateProvider cubeBottomTop(String variant) {
-        ResourceLocation side = toLocation(variant, textures[0]);
-        ResourceLocation bottom = toLocation(variant, textures[1]);
-        ResourceLocation top = toLocation(variant, textures[2]);
-        return (ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
-                .cubeBottomTop(createName(variant), side, bottom, top));
-    }
-
     public CNMBPaletteBlockPattern.IBlockStateProvider pillar(String variant) {
         ResourceLocation side = toLocation(variant, textures[0]);
         ResourceLocation end = toLocation(variant, textures[1]);

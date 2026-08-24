@@ -3,7 +3,7 @@ package net.pod.cnmb;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
 import net.pod.cnmb.networking.ModNetworking;
-import net.pod.cnmb.registry.CNMBAllPaletteStoneTypes;
+import net.pod.cnmb.registry.ModStoneBlocksPalettes;
 import net.pod.cnmb.registry.*;
 import org.slf4j.Logger;
 
@@ -32,7 +32,7 @@ public class NeedMoreBulletsMod {
         NeoForge.EVENT_BUS.register(this);
 
         REGISTRATE.registerEventListeners(modEventBus);
-        CNMBAllPaletteStoneTypes.register(REGISTRATE);
+        ModStoneBlocksPalettes.register(REGISTRATE);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);

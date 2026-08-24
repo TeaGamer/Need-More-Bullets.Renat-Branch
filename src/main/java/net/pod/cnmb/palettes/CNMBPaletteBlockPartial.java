@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.pod.cnmb.NeedMoreBulletsMod;
-import net.pod.cnmb.registry.CNMBAllPaletteStoneTypes;
+import net.pod.cnmb.registry.ModStoneBlocksPalettes;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
@@ -55,7 +55,7 @@ public abstract class CNMBPaletteBlockPartial<B extends Block> {
     }
 
     public @NonnullType BlockBuilder<B, CreateRegistrate> create(String variantName, CNMBPaletteBlockPattern pattern,
-                                                                 BlockEntry<? extends Block> block, CNMBAllPaletteStoneTypes variant) {
+                                                                 BlockEntry<? extends Block> block, ModStoneBlocksPalettes variant) {
         String patternName = Lang.nonPluralId(pattern.createName(variantName));
         String blockName = patternName + "_" + this.name;
 
@@ -101,7 +101,7 @@ public abstract class CNMBPaletteBlockPartial<B extends Block> {
 
     protected abstract B createBlock(Supplier<? extends Block> block);
 
-    protected abstract void createRecipes(CNMBAllPaletteStoneTypes type, BlockEntry<? extends Block> patternBlock,
+    protected abstract void createRecipes(ModStoneBlocksPalettes type, BlockEntry<? extends Block> patternBlock,
                                           DataGenContext<Block, ? extends Block> c, RegistrateRecipeProvider p);
 
     protected abstract void generateBlockState(DataGenContext<Block, B> ctx, RegistrateBlockstateProvider prov,
@@ -135,7 +135,7 @@ public abstract class CNMBPaletteBlockPartial<B extends Block> {
         }
 
         @Override
-        protected void createRecipes(CNMBAllPaletteStoneTypes type, BlockEntry<? extends Block> patternBlock,
+        protected void createRecipes(ModStoneBlocksPalettes type, BlockEntry<? extends Block> patternBlock,
                                      DataGenContext<Block, ? extends Block> c, RegistrateRecipeProvider p) {
             RecipeCategory category = RecipeCategory.BUILDING_BLOCKS;
             p.stairs(DataIngredient.items(patternBlock.get()), category, c::get, c.getName(), false);
@@ -198,7 +198,7 @@ public abstract class CNMBPaletteBlockPartial<B extends Block> {
         }
 
         @Override
-        protected void createRecipes(CNMBAllPaletteStoneTypes type, BlockEntry<? extends Block> patternBlock,
+        protected void createRecipes(ModStoneBlocksPalettes type, BlockEntry<? extends Block> patternBlock,
                                      DataGenContext<Block, ? extends Block> c, RegistrateRecipeProvider p) {
             RecipeCategory category = RecipeCategory.BUILDING_BLOCKS;
             p.slab(DataIngredient.items(patternBlock.get()), category, c::get, c.getName(), false);
@@ -256,7 +256,7 @@ public abstract class CNMBPaletteBlockPartial<B extends Block> {
         }
 
         @Override
-        protected void createRecipes(CNMBAllPaletteStoneTypes type, BlockEntry<? extends Block> patternBlock,
+        protected void createRecipes(ModStoneBlocksPalettes type, BlockEntry<? extends Block> patternBlock,
                                      DataGenContext<Block, ? extends Block> c, RegistrateRecipeProvider p) {
             RecipeCategory category = RecipeCategory.BUILDING_BLOCKS;
             p.stonecutting(DataIngredient.tag(type.materialTag), category, c::get, 1);
