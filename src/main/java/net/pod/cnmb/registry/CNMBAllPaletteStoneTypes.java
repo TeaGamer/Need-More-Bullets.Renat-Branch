@@ -27,7 +27,6 @@ public enum CNMBAllPaletteStoneTypes {
     CERUSSITE(STANDARD_RANGE, r -> r.paletteStoneBlock("cerussite", () -> Blocks.DEEPSLATE, true, true)
             .properties(p -> p.destroyTime(2f))
             .register()),
-
     ;
 
     private final Function<CreateRegistrate, NonNullSupplier<Block>> factory;
@@ -50,7 +49,7 @@ public enum CNMBAllPaletteStoneTypes {
         return variants;
     }
 
-    @SuppressWarnings({"deprecation", "removal"})
+    @SuppressWarnings("removal")
     public static void register(CreateRegistrate registrate) {
         for (CNMBAllPaletteStoneTypes paletteStoneVariants : values()) {
             paletteStoneVariants.baseBlock = paletteStoneVariants.factory.apply(registrate);
